@@ -413,7 +413,14 @@ CREATE TABLE `ly_admin_upload` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文件上传表';
 
-
+CREATE TABLE `ly_admin_session` (
+  `session_id` varchar(255) NOT NULL,
+  `session_expire` int(11) NOT NULL,
+  `session_data` blob,
+  `uid` int(11) unsigned NOT NULL COMMENT '用户ID',
+  `update_time` int(11) unsigned NOT NULL COMMENT '更新时间',
+  UNIQUE KEY `session_id` (`session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='session存储表';
 
 # Dump of table ly_admin_user
 # ------------------------------------------------------------
