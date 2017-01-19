@@ -162,7 +162,7 @@ VALUES
   (26,'导航分组','NAV_GROUP_LIST','top:顶部导航\r\nmain:主导航\r\nbottom:底部导航\r\nwap_bottom:Wap底部导航',5,'array','','导航分组',1458382037,1458382061,6,1),
   (27,'配置分组','CONFIG_GROUP_LIST','1:基本\r\n3:扩展\r\n5:系统\r\n7:部署',5,'array','','配置分组',1379228036,1426930700,7,1),
   (28,'开发模式','DEVELOP_MODE','1',7,'toggle','1:开启\r\n0:关闭','开发模式下会显示菜单管理、配置管理、数据字典等开发者工具',1432393583,1432393583,1,1),
-  (29,'页面Trace','SHOW_PAGE_TRACE','0',7,'toggle','0:关闭\r\n1:开启','是否显示页面Trace信息',1387165685,1387165685,2,1);
+  (29,'页面Trace','APP_TRACE','0',7,'toggle','0:关闭\r\n1:开启','是否显示页面Trace信息',1387165685,1387165685,2,1);
 
 /*!40000 ALTER TABLE `ly_admin_config` ENABLE KEYS */;
 UNLOCK TABLES;

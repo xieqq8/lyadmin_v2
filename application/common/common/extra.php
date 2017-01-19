@@ -126,7 +126,7 @@ if (!function_exists('U')) {
      */
     function U($url = '', $vars = '', $suffix = true, $domain = false)
     {
-        return Url::build($url, $vars, $suffix, $domain);
+        return url($url, $vars, $suffix, $domain);
     }
 }
 

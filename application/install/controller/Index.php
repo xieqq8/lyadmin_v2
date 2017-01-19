@@ -38,9 +38,9 @@ class Index extends Controller
             return true;
         }
         if (is_file('./data/install.lock')) {
-            $this->error('已经成功安装了本系统，请不要重复安装!', U('home/Index/index'));
+            $this->error('已经成功安装了本系统，请不要重复安装!', url('home/Index/index'));
         } else if ($_SERVER[ENV_PRE . 'DEV_MODE'] === 'true') {
-            $this->error('系统处于开发模式，无需安装！', U('home/Index/index'));
+            $this->error('系统处于开发模式，无需安装！', url('home/Index/index'));
         }
     }
 

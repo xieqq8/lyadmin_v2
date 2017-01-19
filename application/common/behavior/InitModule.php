@@ -40,9 +40,6 @@ class InitModule
         // 获取数据库存储的配置
         $database_config = model('Admin/Config')->lists();
 
-        // 兼容TP3配置
-        $config['app_trace'] = $database_config['SHOW_PAGE_TRACE'];
-
         // 允许访问模块列表加上安装的功能模块
         $module_name_list = model('Admin/Module')
             ->where(array('status' => 1, 'is_system' => 0))
