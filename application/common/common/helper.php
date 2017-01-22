@@ -165,6 +165,7 @@ if (!function_exists('model')) {
      */
     function model($name = '', $layer = 'model', $appendSuffix = false)
     {
+        // 兼容TP3的扩展资源写法
         if (strpos($name, '://')) {
             // 指定扩展资源
             list($extend, $model) = explode('://', $name);
@@ -179,7 +180,7 @@ if (!function_exists('model')) {
                 return new $class;
             }
         } else {
-            return Loader::model($name, $layer, $appendSuffix);
+            return Loader::model(lcfirst($name), $layer, $appendSuffix);
         }
     }
 }

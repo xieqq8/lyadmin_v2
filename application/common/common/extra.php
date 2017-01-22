@@ -13,13 +13,10 @@
 
 use think\Cache;
 use think\Config;
-use think\Cookie;
 use think\Db;
 use think\Debug;
 use think\Lang;
-use think\Loader;
 use think\Request;
-use think\Session;
 use think\Url;
 
 define('NOW_TIME', $_SERVER['REQUEST_TIME']);
@@ -52,11 +49,7 @@ if (!function_exists('C')) {
      */
     function C($name = '', $value = null, $range = '')
     {
-        if (is_null($value) && is_string($name)) {
-            return Config::get($name, $range);
-        } else {
-            return Config::set($name, $value, $range);
-        }
+        return config($name, $value, $range);
     }
 }
 
@@ -70,23 +63,7 @@ if (!function_exists('D')) {
      */
     function D($name = '', $layer = 'model', $appendSuffix = false)
     {
-        // 调用扩展资源
-        if (strpos($name, '://')) {
-            // 指定扩展资源
-            list($extend, $model) = explode('://', $name);
-            $model                = explode('/', $model);
-            if ($extend == 'Addons') {
-                // 扩展资源
-                $class = '\\addon\\' . lcfirst($model[0]) . '\\model' . '\\' . $model[1];
-                return new $class;
-            } else {
-                // 扩展资源
-                $class = '\\' . $extend . '\\' . lcfirst($model[0]) . '\\model' . '\\' . $model[1];
-                return new $class;
-            }
-        } else {
-            return Loader::model($name, $layer, $appendSuffix);
-        }
+        return model($name, $layer, $appendSuffix);
     }
 }
 
@@ -130,78 +107,6 @@ if (!function_exists('U')) {
     }
 }
 
-if (!function_exists('dump')) {
-    /**
-     * 浏览器友好的变量输出
-     * @param mixed     $var 变量
-     * @param boolean   $echo 是否输出 默认为true 如果为false 则返回输出字符串
-     * @param string    $label 标签 默认为空
-     * @return void|string
-     */
-    function dump($var, $echo = true, $label = null)
-    {
-        return Debug::dump($var, $echo, $label);
-    }
-}
-
-if (!function_exists('session')) {
-    /**
-     * Session管理
-     * @param string|array  $name session名称，如果为数组表示进行session设置
-     * @param mixed         $value session值
-     * @param string        $prefix 前缀
-     * @return mixed
-     */
-    function session($name, $value = '', $prefix = null)
-    {
-        if (is_array($name)) {
-            // 初始化
-            Session::init($name);
-        } elseif (is_null($name)) {
-            // 清除
-            Session::clear($value);
-        } elseif ('' === $value) {
-            // 判断或获取
-            return 0 === strpos($name, '?') ? Session::has(substr($name, 1), $prefix) : Session::get($name, $prefix);
-        } elseif (is_null($value)) {
-            // 删除
-            return Session::delete($name, $prefix);
-        } else {
-            // 设置
-            return Session::set($name, $value, $prefix);
-        }
-    }
-}
-
-if (!function_exists('cookie')) {
-    /**
-     * Cookie管理
-     * @param string|array  $name cookie名称，如果为数组表示进行cookie设置
-     * @param mixed         $value cookie值
-     * @param mixed         $option 参数
-     * @return mixed
-     */
-    function cookie($name, $value = '', $option = null)
-    {
-        if (is_array($name)) {
-            // 初始化
-            Cookie::init($name);
-        } elseif (is_null($name)) {
-            // 清除
-            Cookie::clear($value);
-        } elseif ('' === $value) {
-            // 获取
-            return 0 === strpos($name, '?') ? Cookie::has(substr($name, 1), $option) : Cookie::get($name);
-        } elseif (is_null($value)) {
-            // 删除
-            return Cookie::delete($name);
-        } else {
-            // 设置
-            return Cookie::set($name, $value, $option);
-        }
-    }
-}
-
 if (!function_exists('S')) {
     /**
      * 缓存管理
@@ -213,32 +118,7 @@ if (!function_exists('S')) {
      */
     function S($name, $value = '', $options = null, $tag = null)
     {
-        if (is_array($options)) {
-            // 缓存操作的同时初始化
-            Cache::connect($options);
-        } elseif (is_array($name)) {
-            // 缓存初始化
-            return Cache::connect($name);
-        }
-        if ('' === $value) {
-            // 获取缓存
-            return 0 === strpos($name, '?') ? Cache::has(substr($name, 1)) : Cache::get($name);
-        } elseif (is_null($value)) {
-            // 删除缓存
-            return Cache::rm($name);
-        } else {
-            // 缓存数据
-            if (is_array($options)) {
-                $expire = isset($options['expire']) ? $options['expire'] : null; //修复查询缓存无法设置过期时间
-            } else {
-                $expire = is_numeric($options) ? $options : null; //默认快捷缓存设置过期时间
-            }
-            if (is_null($tag)) {
-                return Cache::set($name, $value, $expire);
-            } else {
-                return Cache::tag($tag)->set($name, $value, $expire);
-            }
-        }
+        return cache($name, $value, $options, $tag);
     }
 }
 
@@ -252,27 +132,7 @@ if (!function_exists('I')) {
      */
     function I($key = '', $default = null, $filter = null)
     {
-        if (0 === strpos($key, '?')) {
-            $key = substr($key, 1);
-            $has = true;
-        }
-        if ($pos = strpos($key, '.')) {
-            // 指定参数来源
-            $method = substr($key, 0, $pos);
-            if (in_array($method, ['get', 'post', 'put', 'patch', 'delete', 'param', 'request', 'session', 'cookie', 'server', 'env', 'path', 'file'])) {
-                $key = substr($key, $pos + 1);
-            } else {
-                $method = 'param';
-            }
-        } else {
-            // 默认为自动判断
-            $method = 'param';
-        }
-        if (isset($has)) {
-            return request()->has($key, $method, $default);
-        } else {
-            return request()->$method($key, $default, $filter);
-        }
+        return input($key, $default, $filter);
     }
 }
 
@@ -288,8 +148,7 @@ if (!function_exists('E')) {
      */
     function E($msg, $code = 0, $exception = '')
     {
-        $e = $exception ?: '\think\Exception';
-        throw new $e($msg, $code);
+        return exception($msg, $code, $exception);
     }
 }
 
@@ -303,7 +162,7 @@ if (!function_exists('L')) {
      */
     function L($name, $vars = [], $lang = '')
     {
-        return Lang::get($name, $vars, $lang);
+        return lang($name, $vars, $lang);
     }
 }
 
@@ -317,11 +176,7 @@ if (!function_exists('G')) {
      */
     function G($start, $end = '', $dec = 6)
     {
-        if ('' == $end) {
-            Debug::remark($start);
-        } else {
-            return 'm' == $dec ? Debug::getRangeMem($start, $end) : Debug::getRangeTime($start, $end, $dec);
-        }
+        return debug($start, $end, $dec);
     }
 }
 
