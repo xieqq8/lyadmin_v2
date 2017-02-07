@@ -48,12 +48,7 @@ return array(
         'summernote'    => array('HTML编辑器 summernote', 'text'),
         'kindeditor'    => array('HTML编辑器 kindeditor', 'text'),
         'editormd'      => array('Markdown编辑器 editormd', 'text'),
-        'linkage'       => array('三级联动', 'varchar(255) NOT NULL'),
-        'bdmap'         => array('百度地图', 'varchar(63) NOT NULL'),
-        'gmap'          => array('谷歌地图', 'varchar(63) NOT NULL'),
-        'mapbox'        => array('Mapbox', 'varchar(63) NOT NULL'),
         'tags'          => array('标签', 'varchar(127) NOT NULL'),
-        'table'         => array('表格', 'text'),
         'board'         => array('拖动排序', 'varchar(255) NOT NULL'),
     ),
 );

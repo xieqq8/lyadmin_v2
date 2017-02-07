@@ -47,7 +47,7 @@ class Index extends Controller
     // 安装首页
     public function index()
     {
-        $this->redirect('step1');
+        $this->redirect('index.php/index/step1');
     }
 
     // 安装第一步，同意安装协议
