@@ -30,6 +30,11 @@ define('ENV_PRE', 'LY_');
 define('MODULE_MARK', 'Home');
 
 /**
+ * 演示模式
+ */
+define('APP_DEMO', false);
+
+/**
  * 包含开发模式数据库连接配置
  */
 if (@$_SERVER[ENV_PRE . 'DEV_MODE'] !== 'true') {

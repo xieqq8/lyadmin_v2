@@ -25,9 +25,18 @@ if (version_compare(PHP_VERSION, '5.4.0', '<')) {
 define('ENV_PRE', 'LY_');
 
 /**
- * 定义前台标记
+ * 定义后台标记
  */
 define('MODULE_MARK', 'Admin');
+
+/**
+ * 演示模式
+ */
+if ($_SERVER[ENV_PRE . 'APP_DEMO'] === 'true') {
+    define('APP_DEMO', true);
+} else {
+    define('APP_DEMO', false);
+}
 
 /**
  * 包含开发模式数据库连接配置
