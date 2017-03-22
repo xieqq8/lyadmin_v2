@@ -429,7 +429,7 @@ LOCK TABLES `ly_admin_user` WRITE;
 
 INSERT INTO `ly_admin_user` (`id`, `user_type`, `nickname`, `username`, `password`, `email`, `email_bind`, `mobile`, `mobile_bind`, `avatar`, `score`, `money`, `reg_ip`, `reg_type`, `create_time`, `update_time`, `status`)
 VALUES
-  (1,1,'超级管理员','admin','8084c93f4e10c76fd77b53833a5c93a4','',0,'',0,'0',0,0.00,0,'',1438651748,1438651748,1);
+  (1,1,'超级管理员','admin','79cc780bd21b161230268824080b8476','',0,'',0,'0',0,0.00,0,'',1438651748,1438651748,1);
 
 /*!40000 ALTER TABLE `ly_admin_user` ENABLE KEYS */;
 UNLOCK TABLES;

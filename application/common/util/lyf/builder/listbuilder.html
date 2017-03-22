@@ -66,53 +66,6 @@
         </div>
     </div>
 
-    <!-- 多条件搜索 -->
-    <notempty name="search_form_items">
-        <form class="form form-inline search-form-items" method="get" action="{$search_url}">
-            <style>
-                .form-inline .form-group{
-                    margin-right: 12px;
-                    margin-bottom: 15px;
-                }
-                .form-inline .btn{
-                    margin-bottom: 15px;
-                }
-                .form-group .right {
-                   display: inline-block;
-                }
-                @media (max-width: 768px) {
-                    .form-group .left {
-                       width: 25%;
-                    }
-                    .form-group .right {
-                        width: 70%;
-                    }
-                    .search-form-items .search-btn {
-                        width: 100%;
-                    }
-                }
-            </style>
-            <volist name="search_form_items" id="form" key="k">
-                <switch name="form.type">
-                    <include file='[builderpath]/widget/text.html' type='' />
-                    {// 单选框 }
-                    <include file='[builderpath]/widget/radio.html' type='' />
-                    {// 复选框 }
-                    <include file='[builderpath]/widget/checkbox.html' type='' />
-                    {// 下拉框 }
-                    <include file='[builderpath]/widget/select.html' type='' />
-                    {// 日期 }
-                    <include file='[builderpath]/widget/date.html' type='' />
-                    {// 日期时间 }
-                    <include file='[builderpath]/widget/datetime.html' type='' />
-                    {// 日期范围 }
-                    <include file='[builderpath]/widget/dateranger.html' type='' />
-                </switch>
-            </volist>
-            <button type="submit" class="btn btn-primary btn-pill search-btn"><i class="fa fa-search"></i> 搜索</button>
-        </form>
-    </notempty>
-
     <!-- 数据列表 -->
     <div class="builder-container">
         <div class="row">

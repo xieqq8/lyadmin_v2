@@ -23,7 +23,6 @@ class ListBuilder extends Controller
     private $_meta_title; // 页面标题
     private $_top_button_list     = array(); // 顶部工具栏按钮组
     private $_search              = array(); // 搜索参数配置
-    private $_search_form_items   = array(); // 多条件搜索
     private $_tab_nav             = array(); // 页面Tab导航
     private $_table_column_list   = array(); // 表格标题字段
     private $_table_data_list     = array(); // 表格数据列表
@@ -253,31 +252,6 @@ class ListBuilder extends Controller
     public function setSearch($title, $url)
     {
         $this->_search = array('title' => $title, 'url' => $url);
-        return $this;
-    }
-
-    /**
-     * 加入一个搜索表单项
-     * @param $name 字段名称
-     * @param $type 表单类型(取值text、radio、select、date、 datetime、dateranger)
-     * @param $title 表单标题
-     * @param $name 表单名
-     * @param $tip tip
-     * @param $options 表单options
-     * @return $this
-     * @author jry <598821125@qq.com>
-     */
-    public function addSearchItem($name, $type, $title, $tip, $options = array())
-    {
-        $item['name']    = $name;
-        $item['type']    = $type;
-        $item['title']   = $title;
-        $item['tip']     = $tip;
-        $item['options'] = $options;
-        if (isset($_GET[$name])) {
-            $item['value'] = I($name, '', 'trim');
-        }
-        $this->_search_form_items[] = $item;
         return $this;
     }
 
