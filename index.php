@@ -22,7 +22,7 @@ if (version_compare(PHP_VERSION, '5.4.0', '<')) {
 /**
  * 开发模式环境变量前缀
  */
-define('ENV_PRE', 'ly_');
+define('ENV_PRE', 'LY_');
 
 /**
  * 定义前台标记
