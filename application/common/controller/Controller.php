@@ -75,7 +75,7 @@ class Controller extends \think\Controller
         $this->assign('_page_name', strtolower(request()->module() . '_' . request()->controller() . '_' . request()->action()));
         $_current_module = D('Admin/Module')->getFieldByName(request()->module(), 'title'); // 当前模块标题
         $this->assign('_current_module', $_current_module);
-        
+
         $template = strtolower($template);
         if (request()->isAjax()) {
             // IS_API表示是基于Cordova的需要DOM的APP请求

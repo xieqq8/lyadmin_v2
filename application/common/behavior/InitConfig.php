@@ -140,10 +140,10 @@ class InitConfig
 
         // 模版参数配置
         $system_config['view_replace_str']             = config('view_replace_str'); // 先取出配置文件中定义的否则会被覆盖
-        $system_config['view_replace_str']['__IMG__']  = config('top_home_page') . ltrim(APP_DIR, '.') . request()->module() . '/View/Public/img';
-        $system_config['view_replace_str']['__CSS__']  = config('top_home_page') . ltrim(APP_DIR, '.') . request()->module() . '/View/Public/css';
-        $system_config['view_replace_str']['__JS__']   = config('top_home_page') . ltrim(APP_DIR, '.') . request()->module() . '/View/Public/js';
-        $system_config['view_replace_str']['__LIBS__'] = config('top_home_page') . ltrim(APP_DIR, '.') . request()->module() . '/View/Public/libs';
+        $system_config['view_replace_str']['__IMG__']  = config('top_home_page') . ltrim(APP_DIR, '.') . request()->module() . '/view/public/img';
+        $system_config['view_replace_str']['__CSS__']  = config('top_home_page') . ltrim(APP_DIR, '.') . request()->module() . '/view/public/css';
+        $system_config['view_replace_str']['__JS__']   = config('top_home_page') . ltrim(APP_DIR, '.') . request()->module() . '/view/public/js';
+        $system_config['view_replace_str']['__LIBS__'] = config('top_home_page') . ltrim(APP_DIR, '.') . request()->module() . '/view/public/libs';
 
         // 前台默认模块静态资源路径及模板继承基本模板
         $default_public_path = APP_DIR . C('default_module') . '/view/public';

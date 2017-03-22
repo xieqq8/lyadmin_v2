@@ -32,10 +32,10 @@ class Upload extends Home
             if ($_SERVER['HTTP_ORIGIN'] !== request()->domain() && $_GET['callback_type']) {
                 switch ($_GET['callback_type']) {
                     case 'kindeditor':
-                        redirect($_SERVER['HTTP_ORIGIN'] . __ROOT__ . '/Public/libs/kindeditor/callback.php?json=' . $return);
+                        redirect($_SERVER['HTTP_ORIGIN'] . __ROOT__ . '/public/libs/kindeditor/callback.php?json=' . $return);
                         break;
                     case 'editormd':
-                        redirect($_SERVER['HTTP_ORIGIN'] . __ROOT__ . '/Public/libs/editormd/callback.html?json=' . $return);
+                        redirect($_SERVER['HTTP_ORIGIN'] . __ROOT__ . '/public/libs/editormd/callback.html?json=' . $return);
                         break;
                 }
             } else {

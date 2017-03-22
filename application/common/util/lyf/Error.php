@@ -23,7 +23,7 @@ class Error
      * 注册异常处理
      * @return void
      */
-    public static function register($level = 'E_ALL ^ E_NOTICE')
+    public static function register($level = 'E_ALL ^ E_NOTICE ^ E_WARNING')
     {
         error_reporting($level);
         set_error_handler([__CLASS__, 'appError']);
