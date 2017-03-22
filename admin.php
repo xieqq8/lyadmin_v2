@@ -32,7 +32,7 @@ define('MODULE_MARK', 'Admin');
 /**
  * 演示模式
  */
-if ($_SERVER[ENV_PRE . 'APP_DEMO'] === 'true') {
+if (ISSET($_SERVER[ENV_PRE . 'APP_DEMO']) && $_SERVER[ENV_PRE . 'APP_DEMO'] === 'true') {
     define('APP_DEMO', true);
 } else {
     define('APP_DEMO', false);

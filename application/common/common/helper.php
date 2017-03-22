@@ -312,7 +312,7 @@ if (!function_exists('url')) {
      */
     function url($url = '', $vars = '', $suffix = true, $domain = false)
     {
-        return Url::build($url, $vars, $suffix, $domain);
+        return strtolower(Url::build($url, $vars, $suffix, $domain));
     }
 }
 

@@ -50,13 +50,13 @@ class InitModule
         );
         if (MODULE_MARK === 'Admin') {
             $module_allow_list[] = 'admin';
+
+            // 后台只输入{域名}/admin.php即可进入后台首页
+            if ($_SERVER['PATH_INFO'] === null || $_SERVER['PATH_INFO'] === '/') {
+                $_SERVER['PATH_INFO'] = 'admin/index/index';
+            }
         }
         config('module_allow_list', $module_allow_list);
-
-        // 如果是后台访问自动设置默认模块为Admin
-        if (MODULE_MARK === 'Admin') {
-            config('default_module', 'admin');
-        }
 
         // 系统主页地址配置
         $config['top_home_domain'] = request()->domain();
@@ -76,42 +76,8 @@ class InitModule
         $config['top_home_page'] = $config['top_home_domain'] . __ROOT__;
 
         // 模块初始化
-        $request = \think\Request::instance();
-        if ($config['app_multi_module']) {
-            // 多模块部署
-            $dispatch = \think\App::routeCheck($request, $config);
-            $result   = $dispatch['module'];
-            if (is_string($result)) {
-                $result = explode('/', $result);
-            }
-            $module    = strip_tags(strtolower($result[0] ?: $config['default_module']));
-            $bind      = \think\Route::getBind('module');
-            $available = false;
-            if ($bind) {
-                // 绑定模块
-                list($bindModule) = explode('/', $bind);
-                if (empty($result[0])) {
-                    $module    = $bindModule;
-                    $available = true;
-                } elseif ($module == $bindModule) {
-                    $available = true;
-                }
-            } elseif (!in_array($module, $config['deny_module_list']) && is_dir(APP_PATH . $module)) {
-                $available = true;
-            }
-
-            // 模块初始化
-            if ($module && $available) {
-                // 初始化模块
-                $request->module($module);
-                // 模块请求缓存检查
-                $request->cache($config['request_cache'], $config['request_cache_expire']);
-            }
-        } else {
-            // 单一模块部署
-            $module = '';
-            $request->module($module);
-        }
+        $pathinfo = explode('/', request()->pathinfo());
+        request()->module(strtolower($pathinfo[0]));
 
         config($config);
     }
