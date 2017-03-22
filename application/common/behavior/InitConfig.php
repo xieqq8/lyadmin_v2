@@ -155,9 +155,6 @@ class InitConfig
             $system_config['view_replace_str']['__DEFAULT_LIBS__'] = config('top_home_page') . ltrim($default_public_path, '.') . '/libs';
         }
 
-        // 获取当前主题的名称
-        $current_theme = D('Admin/Theme')->where(array('current' => 1))->order('id asc')->getField('name');
-
         // 默认模块
         $system_config['default_module'] = $system_config['default_module'] ?: C('default_module');
         C($system_config); // 添加配置
