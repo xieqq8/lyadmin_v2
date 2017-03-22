@@ -35,9 +35,9 @@ class Login extends Controller
             $password = I('password');
 
             // 图片验证码校验
-            if (!$this->checkVerify(I('post.verify')) && 'localhost' !== request()->hostname() && '127.0.0.1' !== request()->hostname()) {
-                $this->error('验证码输入错误！');
-            }
+            // if (!$this->checkVerify(I('post.verify')) && 'localhost' !== request()->hostname() && '127.0.0.1' !== request()->hostname()) {
+            //     $this->error('验证码输入错误！');
+            // }
 
             // 验证用户名密码是否正确
             $user_object = D('Admin/User');
