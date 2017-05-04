@@ -8,7 +8,7 @@ lyamdin是一套轻量级通用后台，采用Bootstrap3制作，自带权限管
 
 ## 官网：
 
-http://lyadmin.lingyun.net
+http://51.lingyun.net
 
 
 ## 后台截图

@@ -15,10 +15,10 @@
  */
 return array(
     //产品配置
-    'install_product_name'   => 'lyadmin2.0', //产品名称
-    'install_website_domain' => 'http://www.lingyun.net', //官方网址
-    'install_company_name'   => '南京科斯克网络科技有限公司', //公司名称
-    'original_table_prefix'  => 'ly_', //默认表前缀
+    'install_product_name'   => 'xxxadmin2.0', //产品名称
+    'install_website_domain' => 'http://www.51heshui.com', //官方网址
+    'install_company_name'   => '京XXX网络科技有限公司', //公司名称
+    'original_table_prefix'  => 'xxx_', //默认表前缀
 
     //模板相关配置
     'view_replace_str'       => array(

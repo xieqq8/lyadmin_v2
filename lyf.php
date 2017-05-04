@@ -11,7 +11,7 @@
 // | 法律责任的风险。如果需要取得官方授权，请联系官方http://www.lingyun.net
 // +----------------------------------------------------------------------
 
-define('THINK_VERSION', '5.0.5beta');
+define('THINK_VERSION', '5.0.8');
 define('THINK_START_TIME', microtime(true));
 define('THINK_START_MEM', memory_get_usage());
 define('EXT', '.php');
@@ -77,7 +77,7 @@ if (!IS_CLI) {
 }
 
 /**
- * 系统安装及开发模式检测
+ * 系统安装及开发模式检测  生成这两个安装成功:install.lock db.php
  */
 if (is_file('./data/install.lock') === false && @$_SERVER[ENV_PRE . 'DEV_MODE'] !== 'true') {
     define('BIND_MODULE', 'install');

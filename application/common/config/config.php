@@ -12,14 +12,14 @@ $_config = [
      * 根据零云用户协议：
      * 任何情况下使用零云(除了免费版lyadmin和CoreThink)均需获取官方授权，违者追究法律责任，授权联系：http://www.lingyun.net
      */
-    'product_name'           => 'lingyun', // 产品名称
-    'product_title'          => 'lyadmin', // 产品标题
-    'logo_default'           => 'lyadmin', // 产品Logo
-    'logo_inverse'           => 'lyadmin', // 产品Logo深色背景
+    'product_name'           => 'xxxxx', // 产品名称
+    'product_title'          => 'xxadmin', // 产品标题
+    'logo_default'           => 'xxxadmin', // 产品Logo
+    'logo_inverse'           => 'xxxxadmin', // 产品Logo深色背景
     'current_version'        => '2.0.0', // 当前版本号
     'develop_version'        => 'beta2', // 开发版本号
     'build_version'          => '201703221500', // 编译标记
-    'model_name'             => 'lyadmin', // 产品型号
+    'model_name'             => 'xlyadmin', // 产品型号
     'model_title'            => '后台版', // 产品型号标题
     'website_domain'         => 'http://www.lingyun.net', // 官方网址
     'update_url'             => '/appstore/home/core/update', // 官方更新网址
