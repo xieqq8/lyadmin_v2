@@ -26,7 +26,7 @@ class Index extends Admin
     {
         $index_count['module'] = D('Admin/Module')->count();
         $index_count['addon']  = D('Admin/Addon')->count();
-        $index_count['users']  = D('Admin/User')->count();
+        $index_count['users']  = D('Admin/User')->count();      // 用户总数
 
         // 查询今天注册用户
         $start_date         = strtotime(date('Y-m-d', time())); //今天
@@ -35,13 +35,13 @@ class Index extends Admin
             array('egt', $start_date),
             array('lt', $end_date),
         );
-        $index_count['today'] = D('Admin/User')->where($map)->count();
+        $index_count['today'] = D('Admin/User')->where($map)->count();      // 今日新增
 
         // 查询实时在线用户
         $con                   = array();
         $con['update_time']    = array('gt', time() - 180);
         $con['uid']            = array('gt', 0);
-        $index_count['online'] = M('admin_session')->where($con)->count();
+        $index_count['online'] = M('admin_session')->where($con)->count();  // 在线用户
 
         // 模板赋值
         $this->assign('index_count', $index_count);
